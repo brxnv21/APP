@@ -30,10 +30,13 @@ const leads = [
 {empresa:'Bela Clínica Médica',nicho:'Médico',cidade:'Belo Horizonte/MG',whatsapp:'+553132411882',status:'Pendente',observacao:'',dataEnvio:'',proximoContato:''},
 {empresa:'Clínica Lev Estética',nicho:'Médico',cidade:'Belo Horizonte/MG',whatsapp:'+5531986471781',status:'Pendente',observacao:'',dataEnvio:'',proximoContato:''}
 ];
+export async function GET() { return POST(); }
 export async function POST() {
+  try {
   await connectDB();
   const existing = await Lead.countDocuments();
-  if (existing > 0) return Response.json({ msg: 'Dados já existem', count: existing });
+  if (existing > 0) return Response.json({ msg: 'Dados ja existem', count: existing });
   await Lead.insertMany(leads);
   return Response.json({ msg: '28 leads importados com sucesso!' });
+  } catch(e) { return Response.json({ error: e.message }, { status: 500 }); }
 }
