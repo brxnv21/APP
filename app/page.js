@@ -1,7 +1,7 @@
 ﻿'use client';
 import{useState,useEffect,useCallback}from'react';
 const H=()=>{const d=new Date();return`${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()}`};
-const badge=s=>{const m={Pendente:'pendente',Enviado:'enviado','Follow-up':'followup',Remarketing:'remarketing',Convertido:'convertido',Aguardando:'aguardando',Ativo:'ativo',Pausado:'pausado',Inativo:'inativo',Essencial:'essencial',Profissional:'profissional',Premium:'premium'};return`<span class="badge badge-${m[s]||'pendente'}">${s}</span>`};
+const badge=s=>{const m={Pendente:'pendente',Enviado:'enviado','Follow-up':'followup',Remarketing:'remarketing',Convertido:'convertido',Aguardando:'aguardando',Ativo:'ativo',Pausado:'pausado',Inativo:'inativo',Essencial:'essencial',Profissional:'profissional',Premium:'premium'};return<span className={`badge badge-${m[s]||'pendente'}`}>{s}</span>};
 const phone=p=>p?'+55'+p.replace(/\D/g,''):'';
 const G_MSG='Oi! Tudo bem? Sou o Bruno, gestor de trafego da Volt Agencia. Vi o perfil de voces e curti muito o trabalho. Queria saber se voces ja trabalham com trafego pago? Posso te mostrar como aumentar suas vendas.';
 const waUrl=(p,msg)=>{if(!p)return'#';return`https://api.whatsapp.com/send?phone=${phone(p)}&text=${encodeURIComponent(msg||G_MSG)}`};
